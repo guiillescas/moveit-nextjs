@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import styles from '../styles/components/Countdown.module.css'
+import React, { useState, useEffect, ReactElement } from 'react';
+import styles from '../styles/components/Countdown.module.css';
 
-export function Countdown() {
+export function Countdown(): ReactElement {
   const [time, setTime] = useState(25 * 60);
   const [active, setActive] = useState(false);
 
@@ -18,10 +18,10 @@ export function Countdown() {
   useEffect(() => {
     if (active && time > 0) {
       setTimeout(() => {
-        setTime(time - 1)
+        setTime(time - 1);
       }, 1000);
     }
-  }, [active, time])
+  }, [active, time]);
 
   return (
     <div>
@@ -41,5 +41,5 @@ export function Countdown() {
         Iniciar um ciclo
       </button>
     </div>
-  )
+  );
 }

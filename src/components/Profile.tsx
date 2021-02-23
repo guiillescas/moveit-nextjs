@@ -1,6 +1,7 @@
-import styles from '../styles/components/Profile.module.css'
+import React, { ReactElement } from 'react';
+import styles from '../styles/components/Profile.module.css';
 
-export function Profile() {
+export function Profile(): ReactElement {
   return (
     <div className={styles.profileContainer}>
       <img src="https://github.com/guillescas.png" alt="Imagem de Guilherme Illescas" />
@@ -12,5 +13,5 @@ export function Profile() {
         </p>
       </div>
     </div>
-  )
+  );
 }
