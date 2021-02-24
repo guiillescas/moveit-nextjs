@@ -1,13 +1,18 @@
 import React, {
-  ReactElement, useEffect, useState,
+  ReactElement, useContext, useEffect, useState,
 } from 'react';
 import { useTheme } from 'next-themes';
 import Switch from 'react-switch';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
 import styles from '../styles/components/ExperienceBar.module.css';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 
 export function ExperienceBar(): ReactElement {
+  const { currentExperience, experienceToNextLevel } = useContext(ChallengesContext);
+
+  const percentToNextLevel = Math.round((currentExperience * 100) / experienceToNextLevel);
+
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -28,13 +33,19 @@ export function ExperienceBar(): ReactElement {
       <header className={styles.experienceBar}>
         <span>0 xp</span>
         <div>
-          <div style={{ width: '50%' }} />
+          <div style={{ width: `${percentToNextLevel}%` }} />
 
-          <span className={styles.currentExperience} style={{ left: '50%' }}>
-            300 xp
+          <span className={styles.currentExperience} style={{ left: `${percentToNextLevel}%` }}>
+            {currentExperience}
+            {' '}
+            xp
           </span>
         </div>
-        <span>600 xp</span>
+        <span>
+          {experienceToNextLevel}
+          {' '}
+          xp
+        </span>
       </header>
 
       <div className={styles.switch}>
