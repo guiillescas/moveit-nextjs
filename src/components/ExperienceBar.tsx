@@ -1,20 +1,77 @@
-import React, { ReactElement } from 'react';
+import React, {
+  ReactElement, useEffect, useState,
+} from 'react';
+import { useTheme } from 'next-themes';
+import Switch from 'react-switch';
+import { FiSun, FiMoon } from 'react-icons/fi';
 
 import styles from '../styles/components/ExperienceBar.module.css';
 
 export function ExperienceBar(): ReactElement {
-  return (
-    <header className={styles.experienceBar}>
-      <span>0 xp</span>
-      <div>
-        <div style={{ width: '50%' }} />
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
-        <span className={styles.currentExperience} style={{ left: '50%' }}>
-          300 xp
-        </span>
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
+
+  function toogleTheme() {
+    if (theme === 'dark') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  }
+
+  return (
+    <div className={styles.menu}>
+      <header className={styles.experienceBar}>
+        <span>0 xp</span>
+        <div>
+          <div style={{ width: '50%' }} />
+
+          <span className={styles.currentExperience} style={{ left: '50%' }}>
+            300 xp
+          </span>
+        </div>
+        <span>600 xp</span>
+      </header>
+
+      <div className={styles.switch}>
+        <Switch
+          onChange={() => { toogleTheme(); }}
+          checked={theme === 'dark'}
+          height={20}
+          width={40}
+          handleDiameter={20}
+          checkedIcon={(
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+              }}
+            >
+              <FiMoon size={13} color="#fff" />
+            </div>
+          )}
+          uncheckedIcon={(
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+              }}
+            >
+              <FiSun size={13} color="#fff" />
+            </div>
+          )}
+          onColor="#547f92"
+        />
       </div>
-      <span>600 xp</span>
-    </header>
+    </div>
   );
 }
 
