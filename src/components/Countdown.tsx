@@ -1,6 +1,7 @@
 import React, {
   ReactElement, useContext,
 } from 'react';
+import { FaPlay, FaTimes, FaCheckCircle } from 'react-icons/fa';
 
 import { CountdownContext } from '../contexts/CountdownContext';
 
@@ -37,9 +38,10 @@ export function Countdown(): ReactElement {
         <button
           disabled
           type="button"
-          className={styles.countdownButton}
+          className={`${styles.countdownButton} ${styles.countdownDone}`}
         >
           Ciclo encerrado
+          <FaCheckCircle size={16} color="#4cd62b" />
         </button>
       ) : (
         <>
@@ -50,6 +52,7 @@ export function Countdown(): ReactElement {
               onClick={resetCountdown}
             >
               Abandonar ciclo
+              <FaTimes size={18} />
             </button>
           ) : (
             <button
@@ -58,6 +61,7 @@ export function Countdown(): ReactElement {
               onClick={startCountdown}
             >
               Iniciar um ciclo
+              <FaPlay size={14} />
             </button>
           ) }
         </>
