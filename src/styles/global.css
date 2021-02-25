@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  transition: background 0.2s;
 }
 
 :root {
@@ -16,6 +18,8 @@
   --blue: #5965e0;
   --blue-dark: #4953b8;
   --blue-twitter: #2aa9e0;
+  --button-text: #fff;
+  --border: #f0f1f3;
 }
 
 [data-theme='dark'] {
@@ -27,9 +31,11 @@
   --title: #8AA7E5;
   --red: #e83f5b;
   --green: #4cd62b;
-  --blue: #b3a394;
+  --blue: #5965e0;
   --blue-dark: #4953b8;
   --blue-twitter: #2aa9e0;
+  --button-text: #fff;
+  --border: #353535;
 }
 
 @media (max-width: 1080px) {
@@ -55,6 +61,10 @@ body, input, textarea, button {
 
 button, a {
   cursor: pointer;
+}
+
+button {
+  outline: none;
 }
 
 a {
