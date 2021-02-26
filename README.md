@@ -1,8 +1,6 @@
-<center>
-
-  ![](./public/logo-full.svg)
-
-</center>
+<div style="text-align:center">
+  <img src="./public/logo-full.svg" />
+</div>
 
 # MoveIt
 O Moveit é uma aplicação que estimula seu foco e sua saúde, ao mesmo tempo :)
