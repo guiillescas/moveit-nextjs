@@ -1,6 +1,7 @@
-<div style="text-align:center">
-  <img src="./public/logo-full.svg" />
-</div>
+<p align="center">
+  <img align="center" src="./public/logo-full.svg" />
+</p>
+
 
 # MoveIt
 O Moveit é uma aplicação que estimula seu foco e sua saúde, ao mesmo tempo :)
@@ -52,7 +53,6 @@ npm run dev
 ```
 http://localhost:3000
 ```
-
 
 # 😄 Contribuição para o projeto
 
