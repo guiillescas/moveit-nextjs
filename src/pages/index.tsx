@@ -12,6 +12,7 @@ import { CountdownProvider } from '../contexts/CountdownContext';
 
 import styles from '../styles/pages/Home.module.css';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { LeftMenu } from '../components/LeftMenu';
 
 interface HomeProps {
   level: number;
@@ -26,6 +27,8 @@ export default function Home(props: HomeProps): ReactElement {
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
     >
+      <LeftMenu />
+
       <div className={styles.container}>
         <Head>
           <title>Início | move.it</title>
