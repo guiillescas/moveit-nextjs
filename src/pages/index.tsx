@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
 import Head from 'next/head';
 import React, { ReactElement } from 'react';
@@ -15,24 +16,28 @@ import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { LeftMenu } from '../components/LeftMenu';
 
 interface HomeProps {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
+  session?: {
+    user: {
+      name: string;
+      email: string;
+      image: string;
+    }
+  };
 }
 
 export default function Home(props: HomeProps): ReactElement {
   return (
     <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
+      session={props.session}
+
     >
-      <LeftMenu />
 
       <div className={styles.container}>
         <Head>
           <title>Início | move.it</title>
         </Head>
+
+        <LeftMenu />
 
         <ExperienceBar />
 

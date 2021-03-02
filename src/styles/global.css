@@ -63,6 +63,11 @@ button, a {
   cursor: pointer;
 }
 
+button:focus {
+  outline: 2px solid var(--blue);
+  transition: color 0.2s;
+}
+
 a {
   color: inherit;
   text-decoration: none;

@@ -21,6 +21,8 @@
 
 .container svg {
   cursor: pointer;
+
+  color: #B3B3B3;
 }
 
 .container button {
@@ -33,6 +35,18 @@
   justify-content: center;
 
   padding: 1rem 0;
+  border-left: 4px solid transparent;
+
+  transition: color 0.2s;
+}
+
+.container button.activeOption {
+  border-left: 4px solid var(--blue);
+
+}
+
+.container button.activeOption svg {
+  color: var(--blue);
 }
 
 .container .options,
