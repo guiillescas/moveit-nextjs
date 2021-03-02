@@ -1,57 +1,71 @@
-import React, { ReactElement } from 'react';
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/destructuring-assignment */
 import Head from 'next/head';
+import React, { ReactElement } from 'react';
+import { GetServerSideProps } from 'next';
 
-import styles from '../styles/pages/Leaderboard.module.css';
+import { ChallengeBox } from '../components/ChallengeBox';
+import { CompletedChallenges } from '../components/CompletedChallenges';
+import { Countdown } from '../components/Countdown';
+import ExperienceBar from '../components/ExperienceBar';
+import { Profile } from '../components/Profile';
+import { CountdownProvider } from '../contexts/CountdownContext';
+
+import styles from '../styles/pages/Home.module.css';
+import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { LeftMenu } from '../components/LeftMenu';
 
-export default function Leaderboard(): ReactElement {
+interface HomeProps {
+  session?: {
+    user: {
+      name: string;
+      email: string;
+      image: string;
+    }
+  };
+}
+
+export default function Home(props: HomeProps): ReactElement {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Leaderboard | move.it</title>
-      </Head>
+    <ChallengesProvider
+      session={props.session}
 
-      <LeftMenu />
+    >
 
-      <h1>Leaderboard</h1>
+      <div className={styles.container}>
+        <Head>
+          <title>Início | move.it</title>
+        </Head>
 
-      <div className={styles.table}>
-        <div className={styles.titles}>
-          <p>POSIÇÃO</p>
-          <p>USUÁRIO</p>
-          <p>DESAFIOS</p>
-          <p>EXPERIÊNCIA</p>
-        </div>
+        <LeftMenu />
 
-        <div className={styles.card}>
-          <div className={styles.position}>
-            <p>1</p>
-          </div>
+        <ExperienceBar />
 
-          <div className={styles.profile}>
-            <img src="https://github.com/guillescas.png" alt="Imagem de Guilherme Illescas" />
+        <CountdownProvider>
+          <section>
             <div>
-              <strong>Guilherme Illescas</strong>
-              <p>
-                <img src="icons/level.svg" alt="Level" />
-                Level
-                {' '}
-                2
-              </p>
+              <Profile />
+              <CompletedChallenges />
+              <Countdown />
             </div>
-          </div>
-
-          <div className={`${styles.item} ${styles.challenges}`}>
-            <span>127</span>
-            <p>completados</p>
-          </div>
-
-          <div className={`${styles.item} ${styles.experience}`}>
-            <span>150000</span>
-            <p>xp</p>
-          </div>
-        </div>
+            <div>
+              <ChallengeBox />
+            </div>
+          </section>
+        </CountdownProvider>
       </div>
-    </div>
+    </ChallengesProvider>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+
+  return {
+    props: {
+      level: Number(level),
+      currentExperience: Number(currentExperience),
+      challengesCompleted: Number(challengesCompleted),
+    },
+  };
+};
