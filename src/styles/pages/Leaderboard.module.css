@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 960px;
+  min-width: 960px;
+  width: 100%;
+
+  margin: 2.5rem auto;
+}
+
+.container h1 {
+  width: 100%;
+  text-align: left;
+
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 46px;
+}
+
+.container .table {
+  width: 100%;
+
+  margin-top: 40px;
+}
+
+.container .titles {
+  display: grid;
+  grid-template-columns: 5rem 1fr 180px 150px;
+  align-content: center;
+
+  margin-bottom: 24px;
+
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.container .table .card {
+  background: var(--white);
+
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 180px 150px;
+}
+
+.container .table .item {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.container .table .item span {
+  color: var(--blue);
+  margin-right: 8px;
+}
+
+.container .table .card .position p {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+
+  width: 4.5rem;
+  height: 6rem;
+
+  border-right: 4px solid var(--background);
+
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+
+  margin-left: 0.5rem;
+}
+
+.profile > img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.profile div {
+  margin-left: 1.5rem;
+}
+
+.profile div strong {
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--title);
+}
+
+.profile div p {
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.profile div p img {
+  margin-right: 0.5rem;
+  width: 14px;
+  height: 14px;
+}
+
+.container .table .card .challenges {
+  width: 180px
+}
+
+.container .table .card .experience {
+  width: 150px;
+}
