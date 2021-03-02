@@ -6,6 +6,7 @@ import {
   FiAward, FiHome, FiLogOut, FiSun, FiMoon,
 } from 'react-icons/fi';
 import Switch from 'react-switch';
+import { signOut } from 'next-auth/client';
 
 import styles from '../styles/components/LeftMenu.module.css';
 
@@ -83,7 +84,7 @@ export function LeftMenu(): ReactElement {
 
       <div className={styles.logout}>
         <Link href="/">
-          <button type="button">
+          <button type="button" onClick={() => signOut()}>
             <FiLogOut size={26} color="#B3B3B3" />
           </button>
         </Link>
