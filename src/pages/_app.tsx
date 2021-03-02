@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { ThemeProvider } from 'next-themes';
 import { useSession } from 'next-auth/client';
 
-import SignIn from './signin';
+import SignIn from './index';
 
 import '../styles/global.css';
 
