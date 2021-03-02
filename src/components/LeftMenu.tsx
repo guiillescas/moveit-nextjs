@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import {
   FiAward, FiHome, FiLogOut, FiSun, FiMoon,
@@ -9,6 +10,8 @@ import Switch from 'react-switch';
 import styles from '../styles/components/LeftMenu.module.css';
 
 export function LeftMenu(): ReactElement {
+  const router = useRouter();
+
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -32,13 +35,13 @@ export function LeftMenu(): ReactElement {
 
       <div className={styles.options}>
         <Link href="/">
-          <button type="button">
-            <FiHome size={30} color="#B3B3B3" />
+          <button type="button" className={router.pathname === '/' && styles.activeOption}>
+            <FiHome size={30} />
           </button>
         </Link>
-        <Link href="/">
-          <button type="button">
-            <FiAward size={30} color="#B3B3B3" />
+        <Link href="/leaderboard">
+          <button type="button" className={router.pathname === '/leaderboard' && styles.activeOption}>
+            <FiAward size={30} />
           </button>
         </Link>
 
