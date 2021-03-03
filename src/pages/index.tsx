@@ -44,7 +44,7 @@ export default function Home(props: HomeProps): ReactElement {
         <CountdownProvider>
           <section>
             <div>
-              <Profile />
+              <Profile session={props.session} />
               <CompletedChallenges />
               <Countdown />
             </div>

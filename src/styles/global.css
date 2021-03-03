@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 :root {
@@ -65,7 +65,7 @@ button, a {
 
 button:focus {
   outline: 2px solid var(--blue);
-  transition: color 0.2s;
+  /* transition: color 0.2s; */
 }
 
 a {

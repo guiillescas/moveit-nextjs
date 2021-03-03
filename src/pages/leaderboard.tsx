@@ -1,10 +1,21 @@
-import React, { ReactElement } from 'react';
+import React, {
+  ReactElement, useEffect, useState,
+} from 'react';
 import Head from 'next/head';
 
+import axios from 'axios';
 import styles from '../styles/pages/Leaderboard.module.css';
 import { LeftMenu } from '../components/LeftMenu';
 
 export default function Leaderboard(): ReactElement {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/users').then((response) => {
+      setUsers(response.data);
+    });
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,34 +34,37 @@ export default function Leaderboard(): ReactElement {
           <p>EXPERIÊNCIA</p>
         </div>
 
-        <div className={styles.card}>
-          <div className={styles.position}>
-            <p>1</p>
-          </div>
+        {users.map((user) => (
+          <div className={styles.card} key={user.id}>
+            <div className={styles.position}>
+              <p>1</p>
+            </div>
 
-          <div className={styles.profile}>
-            <img src="https://github.com/guillescas.png" alt="Imagem de Guilherme Illescas" />
-            <div>
-              <strong>Guilherme Illescas</strong>
-              <p>
-                <img src="icons/level.svg" alt="Level" />
-                Level
-                {' '}
-                2
-              </p>
+            <div className={styles.profile}>
+              <img src={user.image} alt={`Imagem de ${user.name}`} />
+              <div>
+                <strong>{user.name}</strong>
+                <p>
+                  <img src="icons/level.svg" alt="Level" />
+                  Level
+                  {' '}
+                  {user.level}
+                </p>
+              </div>
+            </div>
+
+            <div className={`${styles.item} ${styles.challenges}`}>
+              <span>{user.challengesCompleted}</span>
+              <p>completados</p>
+            </div>
+
+            <div className={`${styles.item} ${styles.experience}`}>
+              <span>{user.totalExperience}</span>
+              <p>xp</p>
             </div>
           </div>
+        ))}
 
-          <div className={`${styles.item} ${styles.challenges}`}>
-            <span>127</span>
-            <p>completados</p>
-          </div>
-
-          <div className={`${styles.item} ${styles.experience}`}>
-            <span>150000</span>
-            <p>xp</p>
-          </div>
-        </div>
       </div>
     </div>
   );
