@@ -25,7 +25,7 @@ export default function SignIn(): ReactElement {
             signIn('github', { redirect_uri: 'https://moveit.guilhermeillescas.dev/' });
           }}
         >
-          Logar
+          Entrar no move.it
         </button>
       </div>
     </div>
