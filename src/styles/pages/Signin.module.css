@@ -27,7 +27,7 @@
 }
 
 .container .card {
-  color: var(--white);
+  color: #fff;
   text-align: left;
 }
 
@@ -65,7 +65,7 @@
   border-radius: 4px;
   background: var(--blue-dark);
 
-  color: var(--white);
+  color: #fff;
 
   cursor: pointer;
 }
