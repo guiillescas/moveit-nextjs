@@ -42,6 +42,7 @@
 
   display: grid;
   grid-template-columns: 4.5rem 1fr 180px 150px;
+  margin-bottom: 1rem;
 }
 
 .container .table .item {

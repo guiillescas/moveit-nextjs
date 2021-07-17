@@ -34,10 +34,10 @@ export default function Leaderboard(): ReactElement {
           <p>EXPERIÊNCIA</p>
         </div>
 
-        {users.map((user) => (
+        {users.map((user, index) => (
           <div className={styles.card} key={user.id}>
             <div className={styles.position}>
-              <p>1</p>
+              <p>{index + 1}</p>
             </div>
 
             <div className={styles.profile}>
