@@ -4,36 +4,18 @@ import { signIn } from 'next-auth/client';
 import styles from '../styles/pages/Signin.module.css';
 import Loading from '../components/Loading';
 
-export enum LoginTypeEnum {
-  GITHUB = 'github',
-  GMAIL = 'gmail',
-}
-
-interface ILoadingProps {
-  isLoading: boolean;
-  type: LoginTypeEnum | null;
-}
-
 export default function SignIn(): ReactElement {
-  const [loading, setLoading] = useState<ILoadingProps | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function handleLogin(type: LoginTypeEnum) {
-    setLoading({
-      isLoading: true,
-      type,
-    });
+  async function handleLogin() {
+    setIsLoading(true);
 
-    await signIn(type, {
+    await signIn(null, {
       redirect_uri: 'http://localhost:3000/',
       // redirect_uri: 'https://moveit.guilhermeillescas.dev/',
     });
 
-    setTimeout(() => {
-      setLoading({
-        isLoading: false,
-        type: null,
-      });
-    }, 3000);
+    setIsLoading(false);
   }
 
   return (
@@ -49,30 +31,8 @@ export default function SignIn(): ReactElement {
           <p>Faça login com seu GitHub ou Gmail para começar</p>
         </div>
 
-        <button
-          type="button"
-          onClick={() => handleLogin(LoginTypeEnum.GITHUB)}
-          disabled={
-            loading?.isLoading && loading?.type === LoginTypeEnum.GITHUB
-          }
-        >
-          {loading?.isLoading && loading?.type === LoginTypeEnum.GITHUB ? (
-            <Loading />
-          ) : (
-            'Entrar com GitHub'
-          )}
-        </button>
-        <button
-          type="button"
-          onClick={() => handleLogin(LoginTypeEnum.GMAIL)}
-          className={styles.secondButton}
-          disabled={loading?.isLoading && loading?.type === LoginTypeEnum.GMAIL}
-        >
-          {loading?.isLoading && loading?.type === LoginTypeEnum.GMAIL ? (
-            <Loading />
-          ) : (
-            'Entrar com Gmail'
-          )}
+        <button type="button" onClick={handleLogin} disabled={isLoading}>
+          {isLoading ? <Loading /> : 'Fazer login'}
         </button>
       </div>
     </div>
