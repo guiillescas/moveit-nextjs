@@ -4,15 +4,15 @@ import { connectToDatabase } from '../../utils/mongodb.js';
 export default async (request: NowRequest, response: NowResponse) => {
   const { email, name, image } = request.body;
   const { db } = await connectToDatabase();
-  const user = await db
-    .collection('moveit_users')
-    .findOne({ email });
+  const user = await db.collection('moveit_users').findOne({ email });
 
   if (user) {
     return response.status(201).json(user);
   }
 
-  await db.collection('moveit_users').createIndex({ email: 1 }, { unique: true });
+  await db
+    .collection('moveit_users')
+    .createIndex({ email: 1 }, { unique: true });
 
   const new_user = {
     name,
