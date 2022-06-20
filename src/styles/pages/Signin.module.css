@@ -69,6 +69,11 @@
   cursor: pointer;
 }
 
+.container .card button:disabled {
+  background: #3d4494;
+  cursor: not-allowed;
+}
+
 .container .card .secondButton {
   margin-top: 1rem;
 }
