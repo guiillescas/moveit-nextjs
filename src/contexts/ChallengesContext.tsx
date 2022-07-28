@@ -1,10 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React, {
-  createContext,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useState,
+  createContext, ReactElement, ReactNode, useEffect, useState,
 } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -38,7 +34,7 @@ interface ChallengesProviderProps {
       name: string;
       email: string;
       image: string;
-    };
+    }
   };
 }
 
@@ -62,15 +58,13 @@ export function ChallengesProvider({
 
   useEffect(() => {
     async function initialUser() {
-      await axios
-        .post('/api/initial-user', rest.session.user)
-        .then(response => {
-          setLevel(response.data.level);
-          setCurrentExperience(response.data.currentExperience);
-          setChallengesCompleted(response.data.challengesCompleted);
-          setTotalExperience(response.data.totalExperience);
-          setIsUserCharged(true);
-        });
+      await axios.post('/api/initial-user', rest.session.user).then((response) => {
+        setLevel(response.data.level);
+        setCurrentExperience(response.data.currentExperience);
+        setChallengesCompleted(response.data.challengesCompleted);
+        setTotalExperience(response.data.totalExperience);
+        setIsUserCharged(true);
+      });
     }
     initialUser();
   }, []);
@@ -88,14 +82,13 @@ export function ChallengesProvider({
           totalExperience,
         };
 
-        await axios.put('/api/update-user', data).then(response => {
+        axios.put('/api/update-user', data).then((response) => {
           setLevel(response.data.level);
           setCurrentExperience(response.data.currentExperience);
           setChallengesCompleted(response.data.challengesCompleted);
         });
       }
     }
-
     updateUserData();
   }, [level, currentExperience, challengesCompleted, totalExperience]);
 
@@ -173,7 +166,7 @@ export function ChallengesProvider({
     >
       {children}
 
-      {isLevelUpModalOpen && <LevelUpModal />}
+      { isLevelUpModalOpen && <LevelUpModal />}
     </ChallengesContext.Provider>
   );
 }

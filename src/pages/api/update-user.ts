@@ -1,10 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node';
 import { connectToDatabase } from '../../utils/mongodb.js';
 
-export default async (
-  request: NowRequest,
-  response: NowResponse,
-): Promise<any> => {
+export default async (request: NowRequest, response: NowResponse): Promise<any> => {
   const {
     email,
     name,
