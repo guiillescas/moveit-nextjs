@@ -53,7 +53,8 @@
   font-size: 18px;
   line-height: 30px;
 
-  max-width: 254px;
+  width: 254px;
+  margin-left: 1.75rem;
 }
 
 .container .card button {
