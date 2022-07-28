@@ -88,13 +88,14 @@ export function ChallengesProvider({
           totalExperience,
         };
 
-        axios.put('/api/update-user', data).then(response => {
+        await axios.put('/api/update-user', data).then(response => {
           setLevel(response.data.level);
           setCurrentExperience(response.data.currentExperience);
           setChallengesCompleted(response.data.challengesCompleted);
         });
       }
     }
+
     updateUserData();
   }, [level, currentExperience, challengesCompleted, totalExperience]);
 
